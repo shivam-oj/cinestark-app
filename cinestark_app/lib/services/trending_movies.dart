@@ -8,7 +8,7 @@ class TrendingMovies {
 
   Future<void> getTrendingMovies() async {
     try {
-      Response response = await get(Uri.parse('https://api.themoviedb.org/3/trending/movie/day?'));
+      Response response = await get(Uri.parse('https://api.themoviedb.org/3/trending/movie/day?api_key=ec5e239f5a72d82923adff04f4ae819d'));
       Map data = jsonDecode(response.body);
 
       List movies = data['results'];
@@ -18,6 +18,8 @@ class TrendingMovies {
             movieId: mv['id'],
             title: mv['title'],
             posterPath: mv['poster_path'],
+            genreIds: mv['genre_ids'],
+            overview: mv['overview']
         );
 
         trendingMovies.add(movie);

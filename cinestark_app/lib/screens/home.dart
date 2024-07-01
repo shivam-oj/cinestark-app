@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cinestark_app/models/movie.dart';
+import 'package:sticky_headers/sticky_headers.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cinestark_app/shared/app_bar.dart';
+import 'package:cinestark_app/shared/bottom_navigation_bar.dart';
 
 
 class Home extends StatefulWidget {
@@ -19,58 +23,65 @@ class _HomeState extends State<Home> {
     List<Movie> movies = data['trendingMovies'];
 
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 50,
-        title: const Text(
-          'CineStark',
-          style: TextStyle(
-              fontSize: 50.0,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2.0,
-              fontFamily: 'IndieFlower'
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.deepPurple,
-      ),
+      appBar: cineStarkAppBar,
       backgroundColor: Colors.black,
-      body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
-          itemCount: 20,
-          itemBuilder: (context, index) {
-            return Card(
-              color: Colors.black12,
-              child: InkWell(
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 140,
-                      width: 100,
-                      child: Image.network(
-                          'https://image.tmdb.org/t/p/original${movies[index].posterPath}',
-                          fit: BoxFit.fill,
-                      ),
-                    ),
-                    Text(
-                        movies[index].title.toString(),
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                onTap: () async {
-                  Navigator.pushNamed(context, '/movie-details', arguments: { 'movie': movies[index] });
-                },
+      body: ListView.builder(itemCount: 1, itemBuilder: (context, index) {
+        return StickyHeader(
+            header: Container(
+              height: 40.0,
+              color: Colors.black,
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                'Trending Now',
+                style: TextStyle(color: Colors.deepPurple, fontSize: 20,fontWeight: FontWeight.bold),
               ),
-            );
-          }
-      ),
+            ),
+            content: Container(
+              color: Colors.black,
+              child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                  ),
+                  itemCount: 20,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      color: Colors.black12,
+                      child: InkWell(
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 140,
+                              width: 100,
+                              child: CachedNetworkImage(
+                                imageUrl: 'https://image.tmdb.org/t/p/original${movies[index].posterPath}',
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            Text(
+                              movies[index].title.toString(),
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                        onTap: () async {
+                          Navigator.pushNamed(context, '/movie-details', arguments: { 'movie': movies[index] });
+                        },
+                      ),
+                    );
+                  }
+              ),
+            ),
+        );
+      }),
+      bottomNavigationBar: const CineStarkBottomNavigationBar(),
     );
   }
 }

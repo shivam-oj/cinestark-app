@@ -4,7 +4,7 @@ class Movie {
   final double? popularity, voteAverage;
   final String? backdropPath, title, originalTitle, overview, posterPath, mediaType, originalLanguage, releaseDate;
   final bool? adult, video;
-  final List<int>? genreIds;
+  final List<dynamic>? genreIds;
 
   Movie({
     required this.movieId,

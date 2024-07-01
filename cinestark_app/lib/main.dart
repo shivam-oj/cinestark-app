@@ -9,6 +9,6 @@ void main() => runApp(MaterialApp(
   routes: {
     '/': (globalContext) => const Loading(),
     '/home': (globalContext) => const Home(),
-    '/movie-details': (globalContext) => const Moviedetails(),
+    '/movie-details': (globalContext) => const MovieDetails(),
   },
 ));
