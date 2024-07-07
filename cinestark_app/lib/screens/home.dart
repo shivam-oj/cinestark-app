@@ -4,6 +4,8 @@ import 'package:sticky_headers/sticky_headers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cinestark_app/shared/app_bar.dart';
 import 'package:cinestark_app/shared/bottom_navigation_bar.dart';
+import 'package:provider/provider.dart';
+import 'package:cinestark_app/models/user.dart';
 
 
 class Home extends StatefulWidget {
@@ -21,6 +23,12 @@ class _HomeState extends State<Home> {
 
     data = data.isNotEmpty ? data : ModalRoute.of(context)?.settings.arguments as Map;
     List<Movie> movies = data['trendingMovies'];
+
+    final user = Provider.of<AppUser?>(context);
+    print('User: ');
+    print(user);
+    print('UID: ');
+    print(user?.uid);
 
     return Scaffold(
       appBar: cineStarkAppBar,

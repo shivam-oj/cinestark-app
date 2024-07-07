@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "880186898354",
+    "project_id": "cins-467-c96a2",
+    "storage_bucket": "cins-467-c96a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880186898354:android:f7e9a47356adcfe01456ab",
+        "android_client_info": {
+          "package_name": "com.csuchico.assignment_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ6igHo_kjIBXv9liqdBoYg0_p1MfqF5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

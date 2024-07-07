@@ -10,10 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="355874e2-8d7f-49ac-9eb3-23c90bfd5567" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/android/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinestark_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/screens/movieDetails.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/services/trending_movies.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/services/trending_movies.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/screens/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/screens/home.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinestark_app/lib/shared/bottom_navigation_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/shared/bottom_navigation_bar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/windows/flutter/generated_plugins.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,10 +67,16 @@
     "git-widget-placeholder": "main",
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/src/flutter_apps/cinestark-app/cinestark_app/android/app",
     "settings.editor.selected.configurable": "editor.preferences.tabs",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\src\flutter_apps\cinestark-app\cinestark_app\android\app" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="filePath" value="$PROJECT_DIR$/cinestark_app/lib/main.dart" />

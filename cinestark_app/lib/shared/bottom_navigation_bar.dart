@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cinestark_app/services/trending_movies.dart';
 
 
 class CineStarkBottomNavigationBar extends StatefulWidget {
@@ -22,8 +21,6 @@ class _CineStarkBottomNavigationBarState extends State<CineStarkBottomNavigation
           IconButton(
             icon: const Icon(Icons.search, color: Colors.black, size: 50.0),
             onPressed: () async {
-              TrendingMovies instance = TrendingMovies();
-              await instance.getTrendingMovies();
               Navigator.pushNamed(context, '/movie-search');
             },
           ),
@@ -31,11 +28,7 @@ class _CineStarkBottomNavigationBarState extends State<CineStarkBottomNavigation
           IconButton(
             icon: const Icon(Icons.person, color: Colors.black, size: 50.0),
             onPressed: () async {
-              TrendingMovies instance = TrendingMovies();
-              await instance.getTrendingMovies();
-              Navigator.pushNamed(context, '/home', arguments: {
-                'trendingMovies': instance.trendingMovies,
-              });
+              Navigator.pushNamed(context, '/authenticate');
             },
           )
         ],
