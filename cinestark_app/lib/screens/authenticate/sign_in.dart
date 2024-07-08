@@ -69,12 +69,12 @@ class _SignInState extends State<SignIn> {
                     }
                   }
               ),
-              const SizedBox(height: 12.0),
+              // const SizedBox(height: 12.0),
               Text(
                 error,
                 style: const TextStyle(color: Colors.red, fontSize: 14.0),
               ),
-              const SizedBox(height: 12.0),
+              // const SizedBox(height: 12.0),
               ElevatedButton(
                 // color: Colors.pink[400],
                   child: const Text(

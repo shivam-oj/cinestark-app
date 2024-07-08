@@ -15,8 +15,15 @@ class AuthService {
   }
 
   Stream<AppUser?> get user {
-    return _auth.authStateChanges().map((User? user) => _userFromFirebaseUser(user));
     // return _auth.authStateChanges().map(_userFromFirebaseUser);
+    // return _auth.authStateChanges().map((User? user) => _userFromFirebaseUser(user));
+    return _auth.authStateChanges().map((User? user) {
+      if (user != null) {
+        return _userFromFirebaseUser(user);
+      } else {
+        return null;
+      }
+    });
   }
 
   Future signInAnonymously() async {

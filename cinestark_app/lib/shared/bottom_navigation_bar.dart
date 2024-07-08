@@ -28,7 +28,7 @@ class _CineStarkBottomNavigationBarState extends State<CineStarkBottomNavigation
           IconButton(
             icon: const Icon(Icons.person, color: Colors.black, size: 50.0),
             onPressed: () async {
-              Navigator.pushNamed(context, '/authenticate');
+              Navigator.pushNamed(context, '/user');
             },
           )
         ],

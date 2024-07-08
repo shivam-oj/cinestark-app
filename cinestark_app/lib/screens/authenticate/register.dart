@@ -51,7 +51,7 @@ class _RegisterState extends State<Register> {
                   setState(() => password = val);
                 },
               ),
-              const SizedBox(height: 20.0),
+              // const SizedBox(height: 20.0),
               ElevatedButton(
                   // color: Colors.pink[400],
                   child: const Text(
@@ -69,7 +69,7 @@ class _RegisterState extends State<Register> {
                     }
                   }
               ),
-              const SizedBox(height: 12.0),
+              // const SizedBox(height: 12.0),
               Text(
                 error,
                 style: const TextStyle(color: Colors.red, fontSize: 14.0),

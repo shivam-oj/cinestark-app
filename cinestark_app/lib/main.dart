@@ -6,7 +6,7 @@ import 'package:cinestark_app/screens/loading.dart';
 import 'package:cinestark_app/screens/home.dart';
 import 'package:cinestark_app/screens/movie_details.dart';
 import 'package:cinestark_app/screens/movie_search.dart';
-import 'package:cinestark_app/screens/authenticate/authenticate.dart';
+import 'package:cinestark_app/screens/user.dart';
 import 'package:provider/provider.dart';
 
 
@@ -28,7 +28,7 @@ void main() async {
           '/home': (globalContext) => const Home(),
           '/movie-details': (globalContext) => const MovieDetails(),
           '/movie-search': (globalContext) => const MovieSearch(),
-          '/authenticate': (globalContext) => const Authenticate(),
+          '/user': (globalContext) => const User(),
         },
       ),
     )
