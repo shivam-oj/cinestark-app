@@ -1,4 +1,5 @@
 import 'package:cinestark_app/services/auth.dart';
+import 'package:cinestark_app/services/database.dart';
 import 'package:cinestark_app/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:cinestark_app/shared/app_bar.dart';
@@ -20,6 +21,8 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
   String error = '';
 
+  String firstName = '';
+  String? lastName = '';
   String email = '';
   String password = '';
 
@@ -27,13 +30,29 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: cineStarkAppBar,
-      backgroundColor: Colors.brown[100],
+      backgroundColor: Colors.purple[100],
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
+              const SizedBox(height: 20.0),
+              TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'first name'),
+                validator: (val) => val!.isEmpty ? 'Enter first name' : null,
+                onChanged: (val) {
+                  setState(() => firstName = val);
+                },
+              ),
+              const SizedBox(height: 20.0),
+              TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'last name'),
+                // validator: (val) => val!.isEmpty ? 'Enter last name' : null,
+                onChanged: (val) {
+                  setState(() => lastName = val);
+                },
+              ),
               const SizedBox(height: 20.0),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'email'),
@@ -65,8 +84,20 @@ class _RegisterState extends State<Register> {
                         setState(() {
                           error = 'Please supply a valid email';
                         });
+                      } else {
+                        await DatabaseService(uid: result.uid).updateUserData(firstName, lastName, email);
                       }
                     }
+                  }
+              ),
+              ElevatedButton(
+                // color: Colors.pink[400],
+                  child: const Text(
+                    'Sign Out',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  onPressed: () async {
+                    await _auth.signOut();
                   }
               ),
               // const SizedBox(height: 12.0),

@@ -27,7 +27,7 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: cineStarkAppBar,
-      backgroundColor: Colors.brown[100],
+      backgroundColor: Colors.purple[100],
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
