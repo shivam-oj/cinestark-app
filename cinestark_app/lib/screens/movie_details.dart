@@ -29,8 +29,39 @@ class _MovieDetailsState extends State<MovieDetails> {
     return StreamBuilder<UserData>(
       stream: user != null ? DatabaseService(uid: user.uid).userData : null,
       builder: (context, snapshot) {
+
+        bool inWatchList = false;
+        bool liked = false;
+        bool disliked = false;
+
+        List<dynamic> watchList = [];
+        List<dynamic> likedMovies = [];
+        List<dynamic> dislikedMovies = [];
+
+        bool isSignedIn = snapshot.hasData;
+
+        if (isSignedIn) {
+          UserData? userData = snapshot.data;
+          watchList = userData?.watchList ?? [];
+          likedMovies = userData?.likedMovies ?? [];
+          dislikedMovies = userData?.dislikedMovies ?? [];
+
+          if (watchList.contains(movie.movieId.toString())) {
+            inWatchList = true;
+          }
+          if (likedMovies.contains(movie.movieId.toString())) {
+            liked = true;
+          }
+          if (dislikedMovies.contains(movie.movieId.toString())) {
+            disliked = true;
+          }
+        }
+
         return Scaffold(
-          appBar: cineStarkAppBar,
+          appBar: const PreferredSize(
+              preferredSize: Size.fromHeight(60),
+              child: CineStarkAppBar()
+          ),
           backgroundColor: Colors.black,
           body: SingleChildScrollView(
             child: Column(
@@ -115,28 +146,38 @@ class _MovieDetailsState extends State<MovieDetails> {
                   color: Colors.black12,
                   child: Row(
                     children: <Widget>[
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                          });
-                        },
-                        icon: const Icon(
-                          Icons.thumb_down,
-                          size: 50.0,
-                          color: Colors.deepPurple,
+                      Visibility(
+                        visible: isSignedIn,
+                        child: IconButton(
+                          onPressed: () {
+                            if (!disliked) {
+                              dislikedMovies.add(movie.movieId.toString());
+                              DatabaseService(uid: user!.uid).updateDislikedMovies(dislikedMovies);
+                            }
+                          },
+                          icon: Icon(
+                            Icons.thumb_down,
+                            size: 50.0,
+                            color: disliked ? Colors.deepPurple : Colors.deepPurple[100],
+                          ),
                         ),
                       ),
                       const SizedBox(width: 250.0),
-                      IconButton(
-                          onPressed: () {
-                            setState(() {
-                            });
-                          },
-                          icon: const Icon(
-                            Icons.thumb_up,
-                            size: 50.0,
-                            color: Colors.deepPurple,
-                          )
+                      Visibility(
+                        visible: isSignedIn,
+                        child: IconButton(
+                            onPressed: () {
+                              if (!liked) {
+                                likedMovies.add(movie.movieId.toString());
+                                DatabaseService(uid: user!.uid).updateLikedMovies(likedMovies);
+                              }
+                            },
+                            icon: Icon(
+                              Icons.thumb_up,
+                              size: 50.0,
+                              color: liked ? Colors.deepPurple : Colors.deepPurple[100],
+                            )
+                        ),
                       )
                     ],
                   ),
@@ -144,24 +185,18 @@ class _MovieDetailsState extends State<MovieDetails> {
               ],
             ),
           ),
-          floatingActionButton: FloatingActionButton.extended(
-              label: const Icon(Icons.add),
-              backgroundColor: Colors.deepPurple,
-              onPressed: () {
-                if (snapshot.hasData) {
-                  UserData? userData = snapshot.data;
-                  List<dynamic> watchList = userData?.watchList ?? [];
-                  if (!watchList.contains(movie.movieId.toString())) {
+          floatingActionButton: Visibility(
+            visible: isSignedIn,
+            child: FloatingActionButton.extended(
+                label: const Icon(Icons.add),
+                backgroundColor: inWatchList? Colors.deepPurple : Colors.deepPurple[100],
+                onPressed: () {
+                  if (!inWatchList) {
                     watchList.add(movie.movieId.toString());
                     DatabaseService(uid: user!.uid).updateWatchList(watchList);
-                    print('movie added');
-                  } else {
-                    print('Movie already added.');
                   }
-                } else {
-                  print('Please sign in.');
-                }
-              },
+                },
+            ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           bottomNavigationBar: const CineStarkBottomNavigationBar(),

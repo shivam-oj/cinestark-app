@@ -34,7 +34,10 @@ class _HomeState extends State<Home> {
     print(user?.uid);
 
     return Scaffold(
-      appBar: cineStarkAppBar,
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(60),
+          child: CineStarkAppBar()
+      ),
       backgroundColor: Colors.black,
       body: ListView.builder(itemCount: 1, itemBuilder: (context, index) {
         return StickyHeader(
@@ -71,13 +74,15 @@ class _HomeState extends State<Home> {
                                 fit: BoxFit.fill,
                               ),
                             ),
-                            Text(
-                              movies[index].title.toString(),
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1.0,
-                                color: Colors.white,
+                            Flexible(
+                              child: Text(
+                                movies[index].title.toString(),
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.0,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ],

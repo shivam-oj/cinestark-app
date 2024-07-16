@@ -23,7 +23,10 @@ class _MovieSearchState extends State<MovieSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: cineStarkAppBar,
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(60),
+          child: CineStarkAppBar()
+      ),
       backgroundColor: Colors.black,
       body: ListView.builder(itemCount: 1, itemBuilder: (context, index) {
         return StickyHeader(

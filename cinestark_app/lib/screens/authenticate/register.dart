@@ -2,14 +2,10 @@ import 'package:cinestark_app/services/auth.dart';
 import 'package:cinestark_app/services/database.dart';
 import 'package:cinestark_app/shared/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:cinestark_app/shared/app_bar.dart';
-import 'package:cinestark_app/shared/bottom_navigation_bar.dart';
 
 
 class Register extends StatefulWidget {
-  final Function toggleView;
-
-  const Register({super.key, required this.toggleView});
+  const Register({super.key});
 
   @override
   State<Register> createState() => _RegisterState();
@@ -28,16 +24,17 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: cineStarkAppBar,
-      backgroundColor: Colors.purple[100],
-      body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+      return Container(
+        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
-              const SizedBox(height: 20.0),
+              const Text(
+                "New user? Please register..",
+                style: TextStyle(color: Colors.deepPurple, fontSize: 20,fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10.0),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'first name'),
                 validator: (val) => val!.isEmpty ? 'Enter first name' : null,
@@ -45,15 +42,14 @@ class _RegisterState extends State<Register> {
                   setState(() => firstName = val);
                 },
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 10.0),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'last name'),
-                // validator: (val) => val!.isEmpty ? 'Enter last name' : null,
                 onChanged: (val) {
                   setState(() => lastName = val);
                 },
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 10.0),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'email'),
                 validator: (val) => val!.isEmpty ? 'Enter an email' : null,
@@ -61,7 +57,7 @@ class _RegisterState extends State<Register> {
                   setState(() => email = val);
                 },
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 10.0),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'password'),
                 obscureText: true,
@@ -70,9 +66,8 @@ class _RegisterState extends State<Register> {
                   setState(() => password = val);
                 },
               ),
-              // const SizedBox(height: 20.0),
+              const SizedBox(height: 10.0),
               ElevatedButton(
-                  // color: Colors.pink[400],
                   child: const Text(
                     'Register',
                     style: TextStyle(color: Colors.black),
@@ -90,17 +85,6 @@ class _RegisterState extends State<Register> {
                     }
                   }
               ),
-              ElevatedButton(
-                // color: Colors.pink[400],
-                  child: const Text(
-                    'Sign Out',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  onPressed: () async {
-                    await _auth.signOut();
-                  }
-              ),
-              // const SizedBox(height: 12.0),
               Text(
                 error,
                 style: const TextStyle(color: Colors.red, fontSize: 14.0),
@@ -108,8 +92,8 @@ class _RegisterState extends State<Register> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: const CineStarkBottomNavigationBar(),
-    );
+      );
+      // bottomNavigationBar: const CineStarkBottomNavigationBar(),
+    // );
   }
 }

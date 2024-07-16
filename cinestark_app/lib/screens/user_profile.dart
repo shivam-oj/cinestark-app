@@ -31,7 +31,10 @@ class _UserProfileState extends State<UserProfile> {
             UserData? userData = snapshot.data;
             List<dynamic> movies = userData!.watchList;
             return Scaffold(
-              appBar: cineStarkAppBar,
+              appBar: const PreferredSize(
+                  preferredSize: Size.fromHeight(60),
+                  child: CineStarkAppBar()
+              ),
               backgroundColor: Colors.purple[100],
               body: SingleChildScrollView(
                 child: Column(

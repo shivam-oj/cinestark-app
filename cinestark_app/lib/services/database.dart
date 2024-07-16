@@ -15,12 +15,26 @@ class DatabaseService {
     });
   }
 
+  Future<void> updateLikedMovies(List<dynamic> likedMovies) async {
+    return await userCollection.doc(uid).update({
+      'likedMovies': likedMovies,
+    });
+  }
+
+  Future<void> updateDislikedMovies(List<dynamic> dislikedMovies) async {
+    return await userCollection.doc(uid).update({
+      'dislikedMovies': dislikedMovies,
+    });
+  }
+
   Future<void> updateUserData(String firstName, String? lastName, String email) async {
     return await userCollection.doc(uid).set({
       'firstName': firstName,
       'lastName': lastName,
       'email': email,
       'watchList': [],
+      'likedMovies': [],
+      'dislikedMovies': [],
     });
   }
 
@@ -31,6 +45,8 @@ class DatabaseService {
         lastName: snapshot.get('lastName'),
         email: snapshot.get('email'),
         watchList: snapshot.get('watchList'),
+        likedMovies: snapshot.get('likedMovies'),
+        dislikedMovies: snapshot.get('dislikedMovies'),
     );
   }
 
