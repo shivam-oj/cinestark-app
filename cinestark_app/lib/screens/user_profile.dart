@@ -1,5 +1,7 @@
+import 'package:cinestark_app/models/movie.dart';
 import 'package:cinestark_app/screens/loading.dart';
 import 'package:cinestark_app/services/database.dart';
+import 'package:cinestark_app/services/detailed_movies.dart';
 import 'package:flutter/material.dart';
 import 'package:cinestark_app/shared/app_bar.dart';
 import 'package:cinestark_app/shared/bottom_navigation_bar.dart';
@@ -61,15 +63,6 @@ class _UserProfileState extends State<UserProfile> {
                       style: const TextStyle(color: Colors.deepPurple, fontSize: 20,fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 15.0),
-                    ElevatedButton(
-                        child: const Text(
-                          'Sign Out',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        onPressed: () async {
-                          await _auth.signOut();
-                        }
-                    ),
                     Container(
                       height: 40.0,
                       color: Colors.black,
@@ -90,40 +83,46 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                           itemCount: movies.length,
                           itemBuilder: (context, index) {
-                            return Card(
-                              color: Colors.black12,
-                              // child: InkWell(
-                              //   child: Column(
-                              //     children: <Widget>[
-                              //       SizedBox(
-                              //         height: 140,
-                              //         width: 100,
-                              //         child: CachedNetworkImage(
-                              //           imageUrl: 'https://image.tmdb.org/t/p/original${movies[index].posterPath}',
-                              //           fit: BoxFit.fill,
-                              //         ),
-                              //       ),
-                              //       Text(
-                              //         movies[index].title.toString(),
-                              //         style: const TextStyle(
-                              //           fontSize: 15,
-                              //           fontWeight: FontWeight.bold,
-                              //           letterSpacing: 1.0,
-                              //           color: Colors.white,
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   ),
-                              //   onTap: () async {
-                              //     Navigator.pushNamed(context, '/movie-details', arguments: { 'movie': movies[index] });
-                              //   },
-                              // ),
-                              child: Text(
-                                  movies[index],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
+                            return FutureBuilder(
+                                future: DetailedMovie(movieId: int.parse(movies[index])).getMovieDetails(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    Movie? movie = snapshot.data;
+                                    return Card(
+                                      color: Colors.black12,
+                                      child: InkWell(
+                                        child: Column(
+                                          children: <Widget>[
+                                            SizedBox(
+                                              height: 140,
+                                              width: 100,
+                                              child: CachedNetworkImage(
+                                                imageUrl: 'https://image.tmdb.org/t/p/original${movie?.posterPath}',
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                            Flexible(
+                                              child: Text(
+                                                movie!.title.toString(),
+                                                style: const TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  letterSpacing: 1.0,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        // onTap: () async {
+                                        //   Navigator.pushNamed(context, '/movie-details', arguments: { 'movie': movies[index] });
+                                        // },
+                                      ),
+                                    );
+                                  } else {
+                                    return const ScreenLoading();
+                                  }
+                                }
                             );
                           }
                       ),
