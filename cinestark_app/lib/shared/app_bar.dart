@@ -20,10 +20,11 @@ class _CineStarkAppBarState extends State<CineStarkAppBar> {
       title: const Text(
         'CineStark',
         style: TextStyle(
-            fontSize: 50.0,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2.0,
-            fontFamily: 'IndieFlower'
+          color: Colors.black,
+          fontSize: 50.0,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 2.0,
+          fontFamily: 'IndieFlower'
         ),
       ),
       centerTitle: true,

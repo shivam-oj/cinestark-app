@@ -1,13 +1,9 @@
-import 'package:cinestark_app/screens/user.dart';
 import 'package:flutter/material.dart';
 import 'package:cinestark_app/models/movie.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cinestark_app/shared/app_bar.dart';
 import 'package:cinestark_app/shared/bottom_navigation_bar.dart';
-import 'package:provider/provider.dart';
-import 'package:cinestark_app/models/user.dart';
-import 'package:cinestark_app/services/is_signed_in.dart';
 
 
 class Home extends StatefulWidget {
@@ -25,13 +21,6 @@ class _HomeState extends State<Home> {
 
     data = data.isNotEmpty ? data : ModalRoute.of(context)?.settings.arguments as Map;
     List<Movie> movies = data['trendingMovies'];
-
-    final user = Provider.of<AppUser?>(context);
-    final userData = Provider.of<UserData?>(context);
-    print('User: ');
-    print(user);
-    print('UID: ');
-    print(user?.uid);
 
     return Scaffold(
       appBar: const PreferredSize(

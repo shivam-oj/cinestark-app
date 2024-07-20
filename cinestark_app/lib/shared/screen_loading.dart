@@ -7,7 +7,7 @@ class ScreenLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.purple[100],
+      color: Colors.grey,
       child: const Center(
         child: SpinKitChasingDots(
           color: Colors.purple,

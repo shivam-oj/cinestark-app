@@ -1,12 +1,13 @@
+import 'package:cinestark_app/services/genres.dart';
 import 'package:flutter/material.dart';
 import 'package:cinestark_app/models/movie.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cinestark_app/shared/app_bar.dart';
 import 'package:cinestark_app/shared/bottom_navigation_bar.dart';
-import 'package:cinestark_app/services/is_signed_in.dart';
 import 'package:provider/provider.dart';
 import 'package:cinestark_app/models/user.dart';
 import 'package:cinestark_app/services/database.dart';
+import 'package:cinestark_app/shared/screen_loading.dart';
 
 
 class MovieDetails extends StatefulWidget {
@@ -97,26 +98,56 @@ class _MovieDetailsState extends State<MovieDetails> {
                       const Text(
                         'Genres',
                         style: TextStyle(
-                            color: Colors.white
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2.0,
                         ),
                       ),
                       SizedBox(
                         height: 50,
-                        width: 150,
                         child: ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemCount: movie.genreIds?.length,
                             itemBuilder: (context, index) {
-                              return Container(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Text(
-                                  movie.genreIds![index].toString(),
-                                  style: const TextStyle(
-                                    color: Colors.white,
+                              if (movie.genres == null) {
+                                return FutureBuilder(
+                                  future: getGenres(movie.genreIds, context),
+                                  builder: (context, genres) {
+                                    if (genres.hasData) {
+                                      return Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0)
+                                        ),
+                                        color: Colors.grey,
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: Text(
+                                            genres.data![index],
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      return const ScreenLoading();
+                                    }
+                                  },
+                                );
+                              } else {
+                                return Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)
                                   ),
-                                ),
-                              );
+                                  color: Colors.grey,
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Text(
+                                      movie.genres?[index],
+                                    ),
+                                  ),
+                                );
+                              }
                             }
                         ),
                       ),
@@ -130,13 +161,22 @@ class _MovieDetailsState extends State<MovieDetails> {
                       const Text(
                           'Plot',
                         style: TextStyle(
-                            color: Colors.white
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2.0,
                         ),
                       ),
-                      Text(
-                        movie.overview.toString(),
-                        style: const TextStyle(
-                          color: Colors.white,
+                      Card(
+                        margin: const EdgeInsets.all(10.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
+                        color: Colors.grey,
+                        child: Container(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            movie.overview.toString(),
+                          ),
                         ),
                       )
                     ],

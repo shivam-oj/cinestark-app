@@ -7,6 +7,7 @@ import 'package:cinestark_app/services/search_movies.dart';
 import 'package:cinestark_app/models/movie.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:sticky_headers/sticky_headers.dart';
+import 'package:cinestark_app/shared/screen_loading.dart';
 
 
 class MovieSearch extends StatefulWidget {
@@ -30,26 +31,39 @@ class _MovieSearchState extends State<MovieSearch> {
       backgroundColor: Colors.black,
       body: ListView.builder(itemCount: 1, itemBuilder: (context, index) {
         return StickyHeader(
-          header: SearchBar(
-            controller: _movieNameController,
-            onSubmitted: (_) async {
-              SearchMovies instance = SearchMovies(_movieNameController.text);
-              await instance.getMovies();
-              setState(() {
-                movies = instance.searchedMovies;
-              });
-            },
-            leading: const Icon(Icons.search),
+          header: Container(
+            padding: const EdgeInsets.all(20),
+            alignment: Alignment.center,
+            child: SearchBar(
+              controller: _movieNameController,
+              onSubmitted: (_) async {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const ScreenLoading();
+                    });
+                SearchMovies instance = SearchMovies(_movieNameController.text);
+                await instance.getMovies();
+                Navigator.pop(context);
+                setState(() {
+                  movies = instance.searchedMovies;
+                });
+              },
+              leading: const Icon(Icons.search),
+            ),
           ),
           content: Container(
-              color: Colors.black,
+              color: Colors.grey,
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: movies.length,
                 itemBuilder: (context, index) {
                   return Card(
-                    color: Colors.black12,
+                    color: Colors.black,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)
+                    ),
                     child: InkWell(
                       child: Row(
                         children: <Widget>[

@@ -1,11 +1,9 @@
 import 'package:cinestark_app/models/movie.dart';
-import 'package:cinestark_app/screens/loading.dart';
 import 'package:cinestark_app/services/database.dart';
 import 'package:cinestark_app/services/detailed_movies.dart';
 import 'package:flutter/material.dart';
 import 'package:cinestark_app/shared/app_bar.dart';
 import 'package:cinestark_app/shared/bottom_navigation_bar.dart';
-import 'package:cinestark_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:cinestark_app/models/user.dart';
 import 'package:cinestark_app/shared/screen_loading.dart';
@@ -20,7 +18,6 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +34,7 @@ class _UserProfileState extends State<UserProfile> {
                   preferredSize: Size.fromHeight(60),
                   child: CineStarkAppBar()
               ),
-              backgroundColor: Colors.purple[100],
+              backgroundColor: Colors.grey,
               body: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
@@ -51,16 +48,28 @@ class _UserProfileState extends State<UserProfile> {
                               backgroundImage: AssetImage('assets/turtle.jpg') as ImageProvider,
                             ),
                           ),
-                          Text(
-                            "${userData.firstName} ${userData.lastName}",
-                            style: const TextStyle(color: Colors.deepPurple, fontSize: 20,fontWeight: FontWeight.bold),
+                          Column(
+                            children: [
+                              Text(
+                                "${userData.firstName} ${userData.lastName}",
+                                style: const TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold, letterSpacing: 1.0),
+                              ),
+                              Row(
+                                children: [
+                                  IconButton(
+                                    icon: const Icon(Icons.email, color: Colors.deepPurple, size: 30.0),
+                                    onPressed: () {},
+                                  ),
+                                  Text(
+                                    userData.email,
+                                    style: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ),
-                    Text(
-                      userData.email,
-                      style: const TextStyle(color: Colors.deepPurple, fontSize: 20,fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 15.0),
                     Container(
@@ -69,8 +78,8 @@ class _UserProfileState extends State<UserProfile> {
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "${userData?.firstName}'s Watchlist",
-                        style: const TextStyle(color: Colors.deepPurple, fontSize: 20,fontWeight: FontWeight.bold),
+                        "${userData.firstName}'s Watchlist",
+                        style: const TextStyle(color: Colors.deepPurple, fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Container(
@@ -114,9 +123,9 @@ class _UserProfileState extends State<UserProfile> {
                                             ),
                                           ],
                                         ),
-                                        // onTap: () async {
-                                        //   Navigator.pushNamed(context, '/movie-details', arguments: { 'movie': movies[index] });
-                                        // },
+                                        onTap: () async {
+                                          Navigator.pushNamed(context, '/movie-details', arguments: { 'movie': movie });
+                                        },
                                       ),
                                     );
                                   } else {

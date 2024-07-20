@@ -11,8 +11,18 @@
   <component name="ChangeListManager">
     <list default="true" id="355874e2-8d7f-49ac-9eb3-23c90bfd5567" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/models/movie.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/models/movie.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/screens/authenticate/authenticate.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/screens/authenticate/authenticate.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/screens/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/screens/home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/screens/loading.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/screens/loading.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/screens/movie_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/screens/movie_details.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/screens/movie_search.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/screens/movie_search.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinestark_app/lib/screens/user_profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/screens/user_profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/services/auth.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/services/auth.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/services/detailed_movies.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/services/detailed_movies.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/shared/app_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/shared/app_bar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/shared/screen_loading.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/shared/screen_loading.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

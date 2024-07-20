@@ -1,5 +1,4 @@
 import 'package:cinestark_app/models/user.dart';
-import 'package:cinestark_app/screens/authenticate/authenticate.dart';
 import 'package:cinestark_app/services/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
