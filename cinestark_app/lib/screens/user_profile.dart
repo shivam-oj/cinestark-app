@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:cinestark_app/models/movie.dart';
 import 'package:cinestark_app/services/database.dart';
 import 'package:cinestark_app/services/detailed_movies.dart';
@@ -8,6 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:cinestark_app/models/user.dart';
 import 'package:cinestark_app/shared/screen_loading.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 
 class UserProfile extends StatefulWidget {
@@ -19,16 +23,41 @@ class UserProfile extends StatefulWidget {
 
 class _UserProfileState extends State<UserProfile> {
 
+  // File? userImage;
+  final _storage = FirebaseStorage.instance;
+
+  Future pickImage(ImageSource source, DatabaseService userDbService) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      final imageTemporary = File(image.path);
+
+      // setState(() {
+      //   userImage = imageTemporary;
+      // });
+      
+      final reference = _storage.ref().child(userDbService.uid);
+      UploadTask uploadTask = reference.putFile(imageTemporary);
+      await Future.value(uploadTask);
+      final userPhotoURL = await reference.getDownloadURL();
+      DatabaseService(uid: userDbService.uid).updatePhotoURL(userPhotoURL);
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<AppUser?>(context);
+    final userDbService = DatabaseService(uid: user!.uid);
 
     return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user!.uid).userData,
+        stream: userDbService.userData,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData? userData = snapshot.data;
             List<dynamic> movies = userData!.watchList;
+
             return Scaffold(
               appBar: const PreferredSize(
                   preferredSize: Size.fromHeight(60),
@@ -41,12 +70,31 @@ class _UserProfileState extends State<UserProfile> {
                     Container(
                       child: Row(
                         children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.all(25.0),
-                            child: const CircleAvatar(
-                              radius: 48,
-                              backgroundImage: AssetImage('assets/turtle.jpg') as ImageProvider,
-                            ),
+                          Column(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(25.0),
+                                child: CircleAvatar(
+                                  radius: 48,
+                                  backgroundImage: userData.photoURL != null ? NetworkImage(userData.photoURL as String): const AssetImage('assets/turtle.jpg') as ImageProvider,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  FloatingActionButton.extended(
+                                    label: const Icon(Icons.camera_alt),
+                                    backgroundColor: Colors.deepPurple,
+                                    onPressed: () => pickImage(ImageSource.camera, userDbService),
+                                  ),
+                                  const SizedBox(width: 5.0),
+                                  FloatingActionButton.extended(
+                                    label: const Icon(Icons.photo_library),
+                                    backgroundColor: Colors.deepPurple,
+                                    onPressed: () => pickImage(ImageSource.gallery, userDbService),
+                                  ),
+                                ],
+                              )
+                            ],
                           ),
                           Column(
                             children: [
@@ -71,7 +119,7 @@ class _UserProfileState extends State<UserProfile> {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 15.0),
+                    const SizedBox(height: 15.0),
                     Container(
                       height: 40.0,
                       color: Colors.black,

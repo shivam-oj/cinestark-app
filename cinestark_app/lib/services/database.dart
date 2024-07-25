@@ -9,6 +9,12 @@ class DatabaseService {
 
   final CollectionReference userCollection = FirebaseFirestore.instance.collection('users');
 
+  Future<void> updatePhotoURL(String photoURL) async {
+    return await userCollection.doc(uid).update({
+      'photoURL': photoURL,
+    });
+  }
+
   Future<void> updateWatchList(List<dynamic> watchList) async {
     return await userCollection.doc(uid).update({
       'watchList': watchList,
@@ -35,6 +41,7 @@ class DatabaseService {
       'watchList': [],
       'likedMovies': [],
       'dislikedMovies': [],
+      'photoURL': null,
     });
   }
 
@@ -47,11 +54,11 @@ class DatabaseService {
         watchList: snapshot.get('watchList'),
         likedMovies: snapshot.get('likedMovies'),
         dislikedMovies: snapshot.get('dislikedMovies'),
+        photoURL: snapshot.get('photoURL'),
     );
   }
 
   Stream<UserData> get userData {
-    print('start mapping');
     return userCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
   }
 

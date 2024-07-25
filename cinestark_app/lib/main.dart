@@ -14,7 +14,7 @@ void main() async {
   String defaultFirebaseOption = 'default';
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-      options: FirebaseOptions(apiKey: 'AIzaSyDQ6igHo_kjIBXv9liqdBoYg0_p1MfqF5Q', appId: defaultFirebaseOption, messagingSenderId: defaultFirebaseOption, projectId: 'cins-467-c96a2')
+      options: FirebaseOptions(apiKey: 'AIzaSyDQ6igHo_kjIBXv9liqdBoYg0_p1MfqF5Q', appId: 'cins-467-c96a2', messagingSenderId: defaultFirebaseOption, projectId: 'cins-467-c96a2', storageBucket: 'cins-467-c96a2.appspot.com')
   );
 
   return runApp(

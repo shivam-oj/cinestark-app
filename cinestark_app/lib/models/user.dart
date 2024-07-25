@@ -10,7 +10,7 @@ class AppUser {
 class UserData {
 
   final String uid, firstName, email;
-  final String? lastName;
+  final String? lastName, photoURL;
   final List<dynamic> watchList;
   final List<dynamic> likedMovies;
   final List<dynamic> dislikedMovies;
@@ -19,6 +19,7 @@ class UserData {
     required this.uid,
     required this.firstName,
     this.lastName,
+    this.photoURL,
     required this.email,
     required this.watchList,
     required this.likedMovies,
