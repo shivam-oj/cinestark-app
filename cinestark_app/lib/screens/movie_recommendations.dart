@@ -24,26 +24,28 @@ class _MovieRecommendationsState extends State<MovieRecommendations> {
     final user = Provider.of<AppUser?>(context);
     final userDbService = DatabaseService(uid: user!.uid);
 
-    return StreamBuilder<UserData>(
+    return Scaffold(
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(60),
+          child: CineStarkAppBar()
+      ),
+      backgroundColor: Colors.black,
+      body: StreamBuilder<UserData>(
         stream: userDbService.userData,
         builder: (context, snapshot) {
-          UserData? userData = snapshot.data;
-          userDbService.updateInterestedMovies(userData!.likedMovies, userData.watchList, userData.dislikedMovies);
-          List<dynamic> interestedMovies = userData.interestedMovies;
-          if (interestedMovies.isNotEmpty) {
-            return FutureBuilder(
-              future: RecommendedMovies(movieId: int.parse((interestedMovies..shuffle()).first)).getRecommendedMovies(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  List<Movie>? movies = snapshot.data;
-                  return Scaffold(
-                    appBar: const PreferredSize(
-                        preferredSize: Size.fromHeight(60),
-                        child: CineStarkAppBar()
-                    ),
-                    backgroundColor: Colors.black,
-                    body: ListView.builder(itemCount: 1, itemBuilder: (context, index) {
-                      return StickyHeader(
+          if (snapshot.hasData) {
+            UserData? userData = snapshot.data;
+            userDbService.updateInterestedMovies(userData!.likedMovies, userData.watchList, userData.dislikedMovies);
+            List<dynamic> interestedMovies = userData.interestedMovies;
+
+            if (interestedMovies.isNotEmpty) {
+              return FutureBuilder(
+                  future: RecommendedMovies(movieId: int.parse((interestedMovies..shuffle()).first)).getRecommendedMovies(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<Movie>? movies = snapshot.data;
+                      return ListView.builder(itemCount: 1, itemBuilder: (context, index) {
+                        return StickyHeader(
                           header: Container(
                             height: 40.0,
                             color: Colors.black,
@@ -97,20 +99,41 @@ class _MovieRecommendationsState extends State<MovieRecommendations> {
                                   );
                                 }
                             ),
-                          )
-                      );
-                    }),
-                    bottomNavigationBar: const CineStarkBottomNavigationBar(),
-                  );
-                } else {
-                  return const ScreenLoading();
-                }
-              }
-            );
+                          ),
+                        );
+                      });
+                    } else {
+                      return const ScreenLoading();
+                    }
+                  }
+              );
+            } else {
+              return Column(
+                children: [
+                  const Text(
+                      'Please like a few movies or add them to your watchlist to get recommendations..',
+                      style: TextStyle(
+                          color: Colors.deepPurple,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'IndieFlower',
+                          letterSpacing: 1.0
+                      ),
+                  ),
+                  const SizedBox(height: 100.0),
+                  IconButton(
+                    icon: const Icon(Icons.emoji_emotions_sharp, color: Colors.yellow, size: 50.0),
+                    onPressed: () {},
+                  )
+                ],
+              );
+            }
           } else {
-            return const Text('Please like a few movies or add them to your watchlist to get recommendations.');
+            return const ScreenLoading();
           }
-        }
+        },
+      ),
+      bottomNavigationBar: const CineStarkBottomNavigationBar(),
     );
   }
 }
