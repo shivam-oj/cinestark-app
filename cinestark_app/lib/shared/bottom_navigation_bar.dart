@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cinestark_app/services/is_signed_in.dart';
 
 
 class CineStarkBottomNavigationBar extends StatefulWidget {
@@ -24,7 +25,17 @@ class _CineStarkBottomNavigationBarState extends State<CineStarkBottomNavigation
               Navigator.pushNamed(context, '/movie-search');
             },
           ),
-          const SizedBox(width: 200.0),
+          const SizedBox(width: 75.0),
+          IconButton(
+            icon: Visibility(
+              visible: isSignedIn(context),
+              child: const Icon(Icons.movie, color: Colors.black, size: 50.0),
+            ),
+            onPressed: () async {
+              Navigator.pushNamed(context, '/recommended-movies');
+            },
+          ),
+          const SizedBox(width: 75.0),
           IconButton(
             icon: const Icon(Icons.person, color: Colors.black, size: 50.0),
             onPressed: () async {

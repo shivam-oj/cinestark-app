@@ -8,6 +8,7 @@ import 'package:cinestark_app/screens/movie_details.dart';
 import 'package:cinestark_app/screens/movie_search.dart';
 import 'package:cinestark_app/screens/user.dart';
 import 'package:provider/provider.dart';
+import 'package:cinestark_app/screens/movie_recommendations.dart';
 
 
 void main() async {
@@ -26,6 +27,7 @@ void main() async {
         routes: {
           '/': (globalContext) => const Loading(),
           '/home': (globalContext) => const Home(),
+          '/recommended-movies': (globalContext) => const MovieRecommendations(),
           '/movie-details': (globalContext) => const MovieDetails(),
           '/movie-search': (globalContext) => const MovieSearch(),
           '/user': (globalContext) => const User(),

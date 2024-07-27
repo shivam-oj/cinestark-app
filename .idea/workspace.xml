@@ -13,15 +13,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinestark_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinestark_app/lib/models/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/models/user.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/screens/user_profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/screens/user_profile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinestark_app/lib/services/database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/services/database.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinestark_app/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinestark_app/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/linux/flutter/generated_plugins.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinestark_app/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinestark_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinestark_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinestark_app/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinestark_app/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/windows/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/services/search_movies.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/services/search_movies.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/shared/bottom_navigation_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/shared/bottom_navigation_bar.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
