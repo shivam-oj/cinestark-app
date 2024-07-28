@@ -35,8 +35,14 @@ class _MovieRecommendationsState extends State<MovieRecommendations> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData? userData = snapshot.data;
-            userDbService.updateInterestedMovies(userData!.likedMovies, userData.watchList, userData.dislikedMovies);
-            List<dynamic> interestedMovies = userData.interestedMovies;
+            // userDbService.updateInterestedMovies(userData!.likedMovies, userData.watchList, userData.dislikedMovies);
+            List<dynamic> likedMovies = userData!.likedMovies;
+            List<dynamic> watchList = userData.watchList;
+            List<dynamic> dislikedMovies = userData.dislikedMovies;
+            likedMovies.addAll(watchList);
+            List<dynamic> interestedMovies = likedMovies.toSet().toList();
+            interestedMovies.removeWhere((movie) => dislikedMovies.contains(movie));
+            // List<dynamic> interestedMovies = userData.interestedMovies;
 
             if (interestedMovies.isNotEmpty) {
               return FutureBuilder(

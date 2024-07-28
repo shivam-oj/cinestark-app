@@ -15,15 +15,6 @@ class DatabaseService {
     });
   }
 
-  Future<void> updateInterestedMovies(List<dynamic> likedMovies, List<dynamic> watchList, List<dynamic> dislikedMovies) async {
-    likedMovies.addAll(watchList);
-    List<dynamic> interestedMovies = likedMovies.toSet().toList();
-    interestedMovies.removeWhere((movie) => dislikedMovies.contains(movie));
-    return await userCollection.doc(uid).update({
-      'interestedMovies': interestedMovies,
-    });
-  }
-
   Future<void> updateWatchList(List<dynamic> watchList) async {
     return await userCollection.doc(uid).update({
       'watchList': watchList,
@@ -50,7 +41,6 @@ class DatabaseService {
       'watchList': [],
       'likedMovies': [],
       'dislikedMovies': [],
-      'interestedMovies': [],
       'photoURL': null,
     });
   }
@@ -64,7 +54,6 @@ class DatabaseService {
         watchList: snapshot.get('watchList'),
         likedMovies: snapshot.get('likedMovies'),
         dislikedMovies: snapshot.get('dislikedMovies'),
-        interestedMovies: snapshot.get('interestedMovies'),
         photoURL: snapshot.get('photoURL'),
     );
   }

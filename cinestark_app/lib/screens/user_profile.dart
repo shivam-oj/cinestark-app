@@ -57,7 +57,6 @@ class _UserProfileState extends State<UserProfile> {
           if (snapshot.hasData) {
             UserData? userData = snapshot.data;
             List<dynamic> movies = userData!.watchList;
-
             return Scaffold(
               appBar: const PreferredSize(
                   preferredSize: Size.fromHeight(60),
@@ -85,12 +84,14 @@ class _UserProfileState extends State<UserProfile> {
                                     label: const Icon(Icons.camera_alt),
                                     backgroundColor: Colors.deepPurple,
                                     onPressed: () => pickImage(ImageSource.camera, userDbService),
+                                    heroTag: 'camera',
                                   ),
                                   const SizedBox(width: 5.0),
                                   FloatingActionButton.extended(
                                     label: const Icon(Icons.photo_library),
                                     backgroundColor: Colors.deepPurple,
                                     onPressed: () => pickImage(ImageSource.gallery, userDbService),
+                                    heroTag: 'gallery',
                                   ),
                                 ],
                               )
@@ -132,7 +133,7 @@ class _UserProfileState extends State<UserProfile> {
                     ),
                     Container(
                       color: Colors.black,
-                      child: GridView.builder(
+                      child: movies.isNotEmpty ? GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -141,47 +142,65 @@ class _UserProfileState extends State<UserProfile> {
                           itemCount: movies.length,
                           itemBuilder: (context, index) {
                             return FutureBuilder(
-                                future: DetailedMovie(movieId: int.parse(movies[index])).getMovieDetails(),
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasData) {
-                                    Movie? movie = snapshot.data;
-                                    return Card(
-                                      color: Colors.black12,
-                                      child: InkWell(
-                                        child: Column(
-                                          children: <Widget>[
-                                            SizedBox(
-                                              height: 140,
-                                              width: 100,
-                                              child: CachedNetworkImage(
-                                                imageUrl: 'https://image.tmdb.org/t/p/original${movie?.posterPath}',
-                                                fit: BoxFit.fill,
+                              future: DetailedMovie(movieId: int.parse(movies[index])).getMovieDetails(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  Movie? movie = snapshot.data;
+                                  return Card(
+                                    color: Colors.black12,
+                                    child: InkWell(
+                                      child: Column(
+                                        children: <Widget>[
+                                          SizedBox(
+                                            height: 140,
+                                            width: 100,
+                                            child: CachedNetworkImage(
+                                              imageUrl: 'https://image.tmdb.org/t/p/original${movie?.posterPath}',
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                          Flexible(
+                                            child: Text(
+                                              movie!.title.toString(),
+                                              style: const TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                                letterSpacing: 1.0,
+                                                color: Colors.white,
                                               ),
                                             ),
-                                            Flexible(
-                                              child: Text(
-                                                movie!.title.toString(),
-                                                style: const TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
-                                                  letterSpacing: 1.0,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        onTap: () async {
-                                          Navigator.pushNamed(context, '/movie-details', arguments: { 'movie': movie });
-                                        },
+                                          ),
+                                        ],
                                       ),
-                                    );
-                                  } else {
-                                    return const ScreenLoading();
-                                  }
+                                      onTap: () async {
+                                        Navigator.pushNamed(context, '/movie-details', arguments: { 'movie': movie });
+                                      },
+                                    ),
+                                  );
+                                } else {
+                                  return const ScreenLoading();
                                 }
+                              }
                             );
                           }
+                      ) : Column(
+                        children: [
+                          const Text(
+                            'No movies in your watchlist yet!',
+                            style: TextStyle(
+                                color: Colors.deepPurple,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'IndieFlower',
+                                letterSpacing: 1.0
+                            ),
+                          ),
+                          const SizedBox(height: 100.0),
+                          IconButton(
+                            icon: const Icon(Icons.emoji_emotions_sharp, color: Colors.yellow, size: 50.0),
+                            onPressed: () {},
+                          )
+                        ],
                       ),
                     )
                   ],

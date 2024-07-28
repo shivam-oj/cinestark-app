@@ -11,7 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="355874e2-8d7f-49ac-9eb3-23c90bfd5567" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/models/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/models/user.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinestark_app/lib/screens/movie_recommendations.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/screens/movie_recommendations.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/screens/user_profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/screens/user_profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinestark_app/lib/services/database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cinestark_app/lib/services/database.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

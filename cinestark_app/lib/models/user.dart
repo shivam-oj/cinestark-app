@@ -14,7 +14,6 @@ class UserData {
   final List<dynamic> watchList;
   final List<dynamic> likedMovies;
   final List<dynamic> dislikedMovies;
-  final List<dynamic> interestedMovies;
 
   UserData({
     required this.uid,
@@ -25,7 +24,6 @@ class UserData {
     required this.watchList,
     required this.likedMovies,
     required this.dislikedMovies,
-    required this.interestedMovies,
   });
 
 }
