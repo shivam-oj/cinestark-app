@@ -1,5 +1,5 @@
 import 'package:cinestark_app/services/auth.dart';
-import 'package:cinestark_app/shared/constants.dart';
+import 'package:cinestark_app/shared/input_decoration.dart';
 import 'package:flutter/material.dart';
 
 
@@ -33,8 +33,8 @@ class _SignInState extends State<SignIn> {
               ),
               const SizedBox(height: 10.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'email'),
-                validator: (val) => val!.isEmpty ? 'Enter an email' : null,
+                decoration: textInputDecoration.copyWith(hintText: 'Email'),
+                validator: (val) => val!.isEmpty ? 'Please enter your email address' : null,
                 onChanged: (val) {
                   setState(() => email = val);
                 },
@@ -42,8 +42,8 @@ class _SignInState extends State<SignIn> {
               const SizedBox(height: 10.0),
               TextFormField(
                 obscureText: true,
-                decoration: textInputDecoration.copyWith(hintText: 'password'),
-                validator: (val) => val!.length < 6 ? 'Enter a password 6+ chars long' : null,
+                decoration: textInputDecoration.copyWith(hintText: 'Password'),
+                validator: (val) => val!.length < 6 ? 'Your password should be at least six characters long' : null,
                 onChanged: (val) {
                   setState(() => password = val);
                 },

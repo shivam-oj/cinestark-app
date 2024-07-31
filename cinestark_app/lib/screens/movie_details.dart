@@ -202,7 +202,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 250.0),
+                      const Spacer(),
                       Visibility(
                         visible: isSignedIn,
                         child: IconButton(

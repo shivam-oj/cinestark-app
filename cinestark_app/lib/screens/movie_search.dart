@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cinestark_app/shared/app_bar.dart';
 import 'package:cinestark_app/shared/bottom_navigation_bar.dart';
-import 'package:flutter/widgets.dart';
 import 'package:cinestark_app/services/search_movies.dart';
 import 'package:cinestark_app/models/movie.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -71,8 +69,7 @@ class _MovieSearchState extends State<MovieSearch> {
                             height: 100,
                             width: 60,
                             child: CachedNetworkImage(
-                              imageUrl: 'https://image.tmdb.org/t/p/original${movies[index]
-                                  .posterPath}',
+                              imageUrl: 'https://image.tmdb.org/t/p/original${movies[index].posterPath}',
                               fit: BoxFit.fill,
                             ),
                           ),

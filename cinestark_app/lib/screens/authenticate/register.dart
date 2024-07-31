@@ -1,6 +1,6 @@
 import 'package:cinestark_app/services/auth.dart';
 import 'package:cinestark_app/services/database.dart';
-import 'package:cinestark_app/shared/constants.dart';
+import 'package:cinestark_app/shared/input_decoration.dart';
 import 'package:flutter/material.dart';
 
 
@@ -36,32 +36,32 @@ class _RegisterState extends State<Register> {
               ),
               const SizedBox(height: 10.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'first name'),
-                validator: (val) => val!.isEmpty ? 'Enter first name' : null,
+                decoration: textInputDecoration.copyWith(hintText: 'First Name'),
+                validator: (val) => val!.isEmpty ? 'Please enter your first name' : null,
                 onChanged: (val) {
                   setState(() => firstName = val);
                 },
               ),
               const SizedBox(height: 10.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'last name'),
+                decoration: textInputDecoration.copyWith(hintText: 'Last Name'),
                 onChanged: (val) {
                   setState(() => lastName = val);
                 },
               ),
               const SizedBox(height: 10.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'email'),
-                validator: (val) => val!.isEmpty ? 'Enter an email' : null,
+                decoration: textInputDecoration.copyWith(hintText: 'Email'),
+                validator: (val) => val!.isEmpty ? 'Please enter your email address' : null,
                 onChanged: (val) {
                   setState(() => email = val);
                 },
               ),
               const SizedBox(height: 10.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'password'),
+                decoration: textInputDecoration.copyWith(hintText: 'Password'),
                 obscureText: true,
-                validator: (val) => val!.length < 6 ? 'Enter a password 6+ chars long' : null,
+                validator: (val) => val!.length < 6 ? 'The password should be at least six characters long' : null,
                 onChanged: (val) {
                   setState(() => password = val);
                 },

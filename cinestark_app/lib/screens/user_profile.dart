@@ -31,10 +31,6 @@ class _UserProfileState extends State<UserProfile> {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
       final imageTemporary = File(image.path);
-
-      // setState(() {
-      //   userImage = imageTemporary;
-      // });
       
       final reference = _storage.ref().child(userDbService.uid);
       UploadTask uploadTask = reference.putFile(imageTemporary);
